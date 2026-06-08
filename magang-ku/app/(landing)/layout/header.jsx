@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Outfit } from 'next/font/google';
 
+
 const outfit = Outfit({ subsets: ['latin'], weight: ['800'] });
 
 const Header = () => {
@@ -19,8 +20,8 @@ const Header = () => {
 
         <nav className="flex gap-20 font-medium">
           <Link className="text-[#6D8493] hover:text-[#6CC1FF] transition-colors" href="/">Home</Link>
-          <Link className="text-[#6D8493] hover:text-[#6CC1FF] transition-colors" href="/lowongan">Lowongan</Link>
-          <Link className="text-[#6D8493] hover:text-[#6CC1FF] transition-colors" href="/perusahaan">Perusahaan</Link>
+          <Link className="text-[#6D8493] hover:text-[#6CC1FF] transition-colors" href="/jobs/lowongan">Lowongan</Link>
+          <Link className="text-[#6D8493] hover:text-[#6CC1FF] transition-colors" href="/company/listcompany">Perusahaan</Link>
         </nav>
 
         <div className="flex gap-4">
@@ -38,3 +39,4 @@ const Header = () => {
 };
 
 export default Header;
+

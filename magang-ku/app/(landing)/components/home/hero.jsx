@@ -1,5 +1,11 @@
 import Image from "next/image";
 
+import {
+  BriefcaseBusiness,
+  Building2,
+  TrendingUp,
+} from "lucide-react";
+
 const Hero = () => {
   return (
     <section className="w-full px-5 pt-24 pb-12">
@@ -78,10 +84,7 @@ const Hero = () => {
                 style={{ boxShadow: "0 8px 32px rgba(14,42,91,0.13)", minWidth: "190px" }}
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#EBF4FF" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="7" width="20" height="14" rx="3" />
-                    <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-                  </svg>
+                  <BriefcaseBusiness size={22} strokeWidth={2} stroke="#3B82F6" />
                 </div>
                 <div>
                   <p className="text-[20px] font-bold text-[#0f172a] leading-none mb-1">1,75,324</p>
@@ -95,11 +98,7 @@ const Hero = () => {
                 style={{ boxShadow: "0 8px 32px rgba(14,42,91,0.13)", minWidth: "195px" }}
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#2563EB" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="3" width="20" height="14" rx="2" />
-                    <line x1="8" y1="21" x2="16" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
+                  <Building2 size={22} strokeWidth={2} stroke="#FFFFFF" />
                 </div>
                 <div>
                   <p className="text-[20px] font-bold text-[#0f172a] leading-none mb-1">97,354</p>
@@ -113,10 +112,7 @@ const Hero = () => {
                 style={{ boxShadow: "0 8px 32px rgba(14,42,91,0.13)", minWidth: "185px" }}
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#DCFCE7" }}>
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-                    <polyline points="16 7 22 7 22 13" />
-                  </svg>
+                  <TrendingUp size={22} strokeWidth={2} stroke="#16A34A" />
                 </div>
                 <div>
                   <p className="text-[20px] font-bold text-[#0f172a] leading-none mb-1">7,532</p>

@@ -1,4 +1,5 @@
 "use client";
+import { Building2, BriefcaseBusiness, MapPin, Clock3 } from "lucide-react";
 
 import { useState } from "react";
 
@@ -36,48 +37,41 @@ function CompanyCard({ company }) {
   const color = logoColors[company.logo] ?? { bg: "#F5F5F5", text: "#333" };
 
   return (
-    <div className="company-card">
-      <div className="card-header">
+    <div className="bg-white border border-gray-200 rounded-2xl p-7 cursor-pointer flex flex-col gap-4 transition-all duration-200 ease-in-out hover:shadow-[0_6px_28px_rgba(37,99,235,0.13)] hover:border-blue-200 hover:-translate-y-0.5">
+      {/* Header */}
+      <div className="flex items-center gap-3.5">
         <div
-          className="company-logo"
+          className="w-14 h-14 rounded-[14px] flex items-center justify-center font-bold text-[15px] flex-shrink-0"
           style={{ backgroundColor: color.bg, color: color.text }}
         >
           {company.logo}
         </div>
-        <div className="company-info">
-          <h3 className="company-name">{company.name}</h3>
-          <p className="company-location">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
+        <div className="flex-1 min-w-0">
+          <h3 className="text-[15px] font-semibold text-gray-900 m-0 mb-1 truncate">
+            {company.name}
+          </h3>
+          <p className="text-[13px] text-gray-500 m-0 flex items-center gap-1">
+            <MapPin size={14} strokeWidth={1.8} />
             {company.location}
           </p>
         </div>
       </div>
 
-      <div className="card-meta">
-        <span className="meta-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          </svg>
+      {/* Meta */}
+      <div className="flex flex-col gap-2 border-t border-gray-100 pt-4">
+        <span className="text-sm text-gray-600 flex items-center gap-2">
+          <Building2 size={18} strokeWidth={1.8} />
           {company.industry}
         </span>
-        <span className="meta-item">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <path d="M8 21h8M12 17v4" />
-          </svg>
-          {company.jobCount} Job
+        <span className="text-sm text-gray-600 flex items-center gap-2">
+          <BriefcaseBusiness size={18} strokeWidth={1.8} />
+          {company.jobCount} Jobs
         </span>
       </div>
 
-      <div className="card-footer">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 6v6l4 2" />
-        </svg>
+      {/* Footer */}
+      <div className="flex items-center gap-1.5 border-t border-gray-100 pt-4 text-[13px] text-gray-400">
+        <Clock3 size={14} strokeWidth={1.8} />
         <span>Last active {company.lastActive}</span>
       </div>
     </div>
@@ -88,179 +82,27 @@ export default function CompanyGrid() {
   const [visibleCount, setVisibleCount] = useState(8);
 
   return (
-    <>
-      <style>{`
-        .section-wrapper {
-          padding: 4rem 2rem;
-          max-width: 1400px;
-          margin: 0 auto;
-          font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-        }
+    <section className="py-16 px-8 max-w-[1400px] mx-auto font-[Plus_Jakarta_Sans,Segoe_UI,sans-serif]">
+      <h2 className="text-center text-[2.4rem] font-bold text-[#1a1a2e] mb-12 leading-snug">
+        Temukan Perusahaan <span className="text-blue-600">Impianmu</span>
+      </h2>
 
-        .section-title {
-          text-align: center;
-          font-size: 2.4rem;
-          font-weight: 700;
-          color: #1a1a2e;
-          margin-bottom: 3rem;
-          line-height: 1.3;
-        }
+      <div className="grid grid-cols-4 gap-5 mb-12 max-[1100px]:grid-cols-2 max-[580px]:grid-cols-1">
+        {companies.slice(0, visibleCount).map((company) => (
+          <CompanyCard key={company.id} company={company} />
+        ))}
+      </div>
 
-        .section-title span {
-          color: #2563EB;
-        }
-
-        .company-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.25rem;
-          margin-bottom: 3rem;
-        }
-
-        .company-card {
-          background: #ffffff;
-          border: 1px solid #E5E7EB;
-          border-radius: 16px;
-          padding: 1.75rem;
-          cursor: pointer;
-          transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .company-card:hover {
-          box-shadow: 0 6px 28px rgba(37, 99, 235, 0.13);
-          border-color: #BFDBFE;
-          transform: translateY(-3px);
-        }
-
-        .card-header {
-          display: flex;
-          align-items: center;
-          gap: 14px;
-        }
-
-        .company-logo {
-          width: 56px;
-          height: 56px;
-          border-radius: 14px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 700;
-          font-size: 15px;
-          flex-shrink: 0;
-        }
-
-        .company-info {
-          flex: 1;
-          min-width: 0;
-        }
-
-        .company-name {
-          font-size: 15px;
-          font-weight: 600;
-          color: #111827;
-          margin: 0 0 4px;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-
-        .company-location {
-          font-size: 13px;
-          color: #6B7280;
-          margin: 0;
-          display: flex;
-          align-items: center;
-          gap: 4px;
-        }
-
-        .card-meta {
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-          border-top: 1px solid #F3F4F6;
-          padding-top: 1rem;
-        }
-
-        .meta-item {
-          font-size: 14px;
-          color: #4B5563;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .card-footer {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          border-top: 1px solid #F3F4F6;
-          padding-top: 1rem;
-          font-size: 13px;
-          color: #9CA3AF;
-        }
-
-        .see-more-wrapper {
-          display: flex;
-          justify-content: center;
-        }
-
-        .see-more-btn {
-          background: #2563EB;
-          color: #ffffff;
-          border: none;
-          padding: 0.8rem 3rem;
-          border-radius: 10px;
-          font-size: 15px;
-          font-weight: 500;
-          cursor: pointer;
-          transition: background 0.2s ease, transform 0.15s ease;
-        }
-
-        .see-more-btn:hover {
-          background: #1D4ED8;
-          transform: translateY(-1px);
-        }
-
-        .see-more-btn:active {
-          transform: translateY(0);
-        }
-
-        @media (max-width: 1100px) {
-          .company-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 580px) {
-          .section-title { font-size: 1.6rem; }
-          .company-grid { grid-template-columns: 1fr; }
-        }
-      `}</style>
-
-      <section className="section-wrapper">
-        <h2 className="section-title">
-          Temukan Perusahaan <span>Impianmu</span>
-        </h2>
-
-        <div className="company-grid">
-          {companies.slice(0, visibleCount).map((company) => (
-            <CompanyCard key={company.id} company={company} />
-          ))}
+      {visibleCount < companies.length && (
+        <div className="flex justify-center">
+          <button
+            className="bg-blue-600 text-white border-none py-3 px-12 rounded-xl text-[15px] font-medium cursor-pointer transition-all duration-200 hover:bg-blue-700 hover:-translate-y-px active:translate-y-0"
+            onClick={() => setVisibleCount((prev) => prev + 8)}
+          >
+            See More
+          </button>
         </div>
-
-        {visibleCount < companies.length && (
-          <div className="see-more-wrapper">
-            <button
-              className="see-more-btn"
-              onClick={() => setVisibleCount((prev) => prev + 8)}
-            >
-              See More
-            </button>
-          </div>
-        )}
-      </section>
-    </>
+      )}
+    </section>
   );
 }
